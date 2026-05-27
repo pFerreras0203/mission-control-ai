@@ -102,6 +102,17 @@ def gerar_recomendacao(ciclo):
 
     return " | ".join(recomendacoes)
 
+def analisar_tendencia():
+    risco_primeiro = calcular_risco_ciclo(dados_missao[0])
+    risco_ultimo = calcular_risco_ciclo(dados_missao[-1])
+
+    if risco_ultimo > risco_primeiro:
+        return "A missao apresentou tendencia de piora"
+    elif risco_ultimo < risco_primeiro:
+        return "A missao apresentou tendencia de melhora"
+    else:
+        return "A missao permaneceu estavel em relacao ao inicio"
+
 print("=" * 60)
 print("MISSION CONTROL AI")
 print("=" * 60)
