@@ -1,13 +1,13 @@
-NOME_MISSAO = "Missao_espacial1"
-NOME_EQUIPE = "Pedro's"
+NOME_MISSAO = "Projeto_Helios"
+NOME_EQUIPE = "Polaris"
 
 dados_missao = [
     [22, 95, 91, 98, 95],
-    [26, 83, 76, 95, 88],
-    [32, 61, 54, 90, 68],
-    [37, 44, 35, 85, 52],
-    [41, 25, 17, 76, 32],
-    [35, 52, 29, 80, 47],
+    [44, 21, 14, 74, 27],
+    [40, 33, 22, 78, 35],
+    [36, 48, 30, 82, 46],
+    [31, 62, 44, 87, 58],
+    [26, 74, 57, 91, 71],
 ]
 
 areas_monitoradas = [
