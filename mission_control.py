@@ -36,3 +36,18 @@ def analisar_comunicacao(valor):
     else:
         return "NORMAL", 0, "Comunicacao normal"
 
+def analisar_bateria(valor):
+    if valor < 20:
+        return "CRITICO", 2, "Bateria em nivel critico"
+    elif valor <= 49:
+        return "ATENCAO", 1, "Bateria abaixo do recomendado"
+    else:
+        return "NORMAL", 0, "Energia normal"
+
+def analisar_oxigenio(valor):
+    if valor < 80:
+        return "CRITICO", 2, "Oxigenio em nivel critico"
+    elif valor <= 89:
+        return "ATENCAO", 1, "Oxigenio abaixo do ideal"
+    else:
+        return "NORMAL", 0, "Oxigenio normal"
