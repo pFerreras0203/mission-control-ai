@@ -59,3 +59,20 @@ def analisar_estabilidade(valor):
         return "ATENCAO", 1, "Estabilidade operacional reduzida"
     else:
         return "NORMAL", 0, "Estabilidade operacional normal"
+
+def calcular_risco_ciclo(ciclo):
+    _, pontos_temp,  _ = analisar_temperatura(ciclo[0])
+    _, pontos_com,   _ = analisar_comunicacao(ciclo[1])
+    _, pontos_bat,   _ = analisar_bateria(ciclo[2])
+    _, pontos_oxi,   _ = analisar_oxigenio(ciclo[3])
+    _, pontos_est,   _ = analisar_estabilidade(ciclo[4])
+
+    return pontos_temp + pontos_com + pontos_bat + pontos_oxi + pontos_est
+
+def classificar_ciclo(pontuacao):
+    if pontuacao <= 2:
+        return "MISSAO ESTAVEL"
+    elif pontuacao <= 5:
+        return "MISSAO EM ATENCAO"
+    else:
+        return "MISSAO CRITICA"
