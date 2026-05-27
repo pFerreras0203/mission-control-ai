@@ -76,3 +76,28 @@ def classificar_ciclo(pontuacao):
         return "MISSAO EM ATENCAO"
     else:
         return "MISSAO CRITICA"
+
+def gerar_recomendacao(ciclo):
+    _, pontos_temp, _ = analisar_temperatura(ciclo[0])
+    _, pontos_com,  _ = analisar_comunicacao(ciclo[1])
+    _, pontos_bat,  _ = analisar_bateria(ciclo[2])
+    _, pontos_oxi,  _ = analisar_oxigenio(ciclo[3])
+    _, pontos_est,  _ = analisar_estabilidade(ciclo[4])
+
+    recomendacoes = []
+
+    if pontos_temp == 2:
+        recomendacoes.append("Verificar controle termico da missao")
+    if pontos_com == 2:
+        recomendacoes.append("Tentar restabelecer contato com a base")
+    if pontos_bat == 2:
+        recomendacoes.append("Ativar modo de economia de energia")
+    if pontos_oxi == 2:
+        recomendacoes.append("Acionar protocolo de suporte a vida")
+    if pontos_est == 2:
+        recomendacoes.append("Reduzir operacoes nao essenciais")
+
+    if not recomendacoes:
+        return "Manter operacao normal e continuar monitoramento"
+
+    return " | ".join(recomendacoes)
