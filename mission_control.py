@@ -113,6 +113,25 @@ def analisar_tendencia():
     else:
         return "A missao permaneceu estavel em relacao ao inicio"
 
+def identificar_area_mais_afetada():
+    pontos_por_area = [0, 0, 0, 0, 0]
+
+    for ciclo in dados_missao:
+        _, p0, _ = analisar_temperatura(ciclo[0])
+        _, p1, _ = analisar_comunicacao(ciclo[1])
+        _, p2, _ = analisar_bateria(ciclo[2])
+        _, p3, _ = analisar_oxigenio(ciclo[3])
+        _, p4, _ = analisar_estabilidade(ciclo[4])
+
+        pontos_por_area[0] += p0
+        pontos_por_area[1] += p1
+        pontos_por_area[2] += p2
+        pontos_por_area[3] += p3
+        pontos_por_area[4] += p4
+
+    maior_indice = pontos_por_area.index(max(pontos_por_area))
+    return areas_monitoradas[maior_indice], pontos_por_area
+
 print("=" * 60)
 print("MISSION CONTROL AI")
 print("=" * 60)
