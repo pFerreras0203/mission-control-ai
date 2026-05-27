@@ -17,3 +17,13 @@ areas_monitoradas = [
     "Suporte de oxigenio",
     "Estabilidade operacional"
 ]
+
+def analisar_temperatura(valor):
+    if valor < 18:
+      return "ATENCAO", 1, "Temperatura baixa"
+    elif valor <= 30:
+        return "NORMAL", 0, "Temperatura normal"
+    elif valor <= 35:
+        return "ATENCAO", 1, "Temperatura elevada"
+    else:
+        return "CRITICO", 2, "Risco de superaquecimento"
