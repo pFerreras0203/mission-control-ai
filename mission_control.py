@@ -101,3 +101,33 @@ def gerar_recomendacao(ciclo):
         return "Manter operacao normal e continuar monitoramento"
 
     return " | ".join(recomendacoes)
+
+print("=" * 60)
+print("MISSION CONTROL AI")
+print("=" * 60)
+print(f"Missao: {NOME_MISSAO}")
+print(f"Equipe: {NOME_EQUIPE}")
+print(f"Quantidade de ciclos analisados: {len(dados_missao)}")
+print("=" * 60)
+
+for i, ciclo in enumerate(dados_missao):
+    status_temp, _, desc_temp = analisar_temperatura(ciclo[0])
+    status_com,  _, desc_com  = analisar_comunicacao(ciclo[1])
+    status_bat,  _, desc_bat  = analisar_bateria(ciclo[2])
+    status_oxi,  _, desc_oxi  = analisar_oxigenio(ciclo[3])
+    status_est,  _, desc_est  = analisar_estabilidade(ciclo[4])
+
+    pontuacao = calcular_risco_ciclo(ciclo)
+    classificacao = classificar_ciclo(pontuacao)
+    recomendacao = gerar_recomendacao(ciclo)
+
+    print(f"\nCICLO {i + 1}")
+    print("-" * 60)
+    print(f"Temperatura:  {ciclo[0]} C  | {status_temp} | {desc_temp}")
+    print(f"Comunicacao:  {ciclo[1]}%   | {status_com}  | {desc_com}")
+    print(f"Bateria:      {ciclo[2]}%   | {status_bat}  | {desc_bat}")
+    print(f"Oxigenio:     {ciclo[3]}%   | {status_oxi}  | {desc_oxi}")
+    print(f"Estabilidade: {ciclo[4]}%   | {status_est}  | {desc_est}")
+    print(f"\nPontuacao de risco do ciclo: {pontuacao}")
+    print(f"Classificacao do ciclo: {classificacao}")
+    print(f"Recomendacao: {recomendacao}")
