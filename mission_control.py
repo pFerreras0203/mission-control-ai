@@ -1,4 +1,4 @@
-NOME_MISSAO = "Missao"
+NOME_MISSAO = "Missao_espacial1"
 NOME_EQUIPE = "Pedro's"
 
 dados_missao = [
@@ -132,6 +132,49 @@ def identificar_area_mais_afetada():
     maior_indice = pontos_por_area.index(max(pontos_por_area))
     return areas_monitoradas[maior_indice], pontos_por_area
 
+def gerar_relatorio_final():
+    riscos = [calcular_risco_ciclo(ciclo) for ciclo in dados_missao]
+
+    media_temp = sum(ciclo[0] for ciclo in dados_missao) / len(dados_missao)
+    media_com  = sum(ciclo[1] for ciclo in dados_missao) / len(dados_missao)
+    media_bat  = sum(ciclo[2] for ciclo in dados_missao) / len(dados_missao)
+    media_oxi  = sum(ciclo[3] for ciclo in dados_missao) / len(dados_missao)
+    media_est  = sum(ciclo[4] for ciclo in dados_missao) / len(dados_missao)
+
+    ciclo_critico = riscos.index(max(riscos)) + 1
+    risco_medio   = sum(riscos) / len(riscos)
+    ciclos_criticos = sum(1 for r in riscos if r >= 6)
+
+    tendencia = analisar_tendencia()
+    area_mais_afetada, pontos_por_area = identificar_area_mais_afetada()
+    classificacao_final = classificar_ciclo(round(risco_medio))
+
+    print("\n" + "=" * 60)
+    print("RELATORIO FINAL DA MISSAO")
+    print("=" * 60)
+    print(f"Missao: {NOME_MISSAO}")
+    print(f"Equipe: {NOME_EQUIPE}")
+    print(f"\nQuantidade de ciclos analisados: {len(dados_missao)}")
+    print(f"Media de temperatura:  {media_temp:.2f} C")
+    print(f"Media de comunicacao:  {media_com:.2f}%")
+    print(f"Media de bateria:      {media_bat:.2f}%")
+    print(f"Media de oxigenio:     {media_oxi:.2f}%")
+    print(f"Media de estabilidade: {media_est:.2f}%")
+    print(f"\nCiclo mais critico: Ciclo {ciclo_critico}")
+    print(f"Maior pontuacao de risco: {max(riscos)}")
+    print(f"Risco medio da missao: {risco_medio:.2f}")
+    print(f"Quantidade de ciclos criticos: {ciclos_criticos}")
+    print(f"\nTendencia da missao:")
+    print(f"{tendencia}")
+    print(f"\nPontuacao acumulada por area:")
+    for i, area in enumerate(areas_monitoradas):
+        print(f"{area}: {pontos_por_area[i]} pontos")
+    print(f"\nArea mais afetada:")
+    print(f"{area_mais_afetada}")
+    print(f"\nClassificacao final da missao:")
+    print(f"{classificacao_final}")
+    print("=" * 60)
+
 print("=" * 60)
 print("MISSION CONTROL AI")
 print("=" * 60)
@@ -161,3 +204,5 @@ for i, ciclo in enumerate(dados_missao):
     print(f"\nPontuacao de risco do ciclo: {pontuacao}")
     print(f"Classificacao do ciclo: {classificacao}")
     print(f"Recomendacao: {recomendacao}")
+
+gerar_relatorio_final()
