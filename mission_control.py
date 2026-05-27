@@ -51,3 +51,11 @@ def analisar_oxigenio(valor):
         return "ATENCAO", 1, "Oxigenio abaixo do ideal"
     else:
         return "NORMAL", 0, "Oxigenio normal"
+
+def analisar_estabilidade(valor):
+    if valor < 40:
+        return "CRITICO", 2, "Estabilidade operacional critica"
+    elif valor <= 69:
+        return "ATENCAO", 1, "Estabilidade operacional reduzida"
+    else:
+        return "NORMAL", 0, "Estabilidade operacional normal"
